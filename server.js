@@ -5,7 +5,7 @@ const multer = require("multer")
 const path = require('path');
 const cors = require('cors');
 const app = express();
-const {MONGODB_URL} = require('./config')
+const {MONGODB_URL, API_BASE_URL} = require('./config')
 
 
 //DB CONNECTION
@@ -38,7 +38,7 @@ app.use('/images', express.static('upload/images'))
 app.post('/upload', upload.single('product'),(req,res)=>{
     res.json({
         success:1,
-        image_url:`http://localhost:${port}/images/${req.file.filename}`
+        image_url:`${API_BASE_URL}/images/${req.file.filename}`
     })
 })
 
